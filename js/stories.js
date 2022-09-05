@@ -53,7 +53,7 @@ function putStoriesOnPage() {
 
 
 // use created story data to append a new story to a page
-$("#new-story-form").on("submit", function(e) {
+$("#new-story-form").on("submit", async function(e) {
 
   e.preventDefault;
 
@@ -68,9 +68,11 @@ $("#new-story-form").on("submit", function(e) {
   console.log(currentUser);
 
 
-const newStory = storyList.addStory(currentUser, {title, author, url});
+const newStory = await storyList.addStory(currentUser, {title, author, url});
+
+const $newStory = generateStoryMarkup(newStory);
 
 console.log(storyList.stories);
 
-storyList.stories.append(newStory);
+$allStoriesList.prepend($newStory);
 });
