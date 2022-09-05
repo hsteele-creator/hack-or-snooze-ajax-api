@@ -70,6 +70,7 @@ $("#new-story-form").on("submit", function(e) {
 
 const newStory = storyList.addStory(currentUser, {title, author, url});
 
-storyList.stories.append(newStory);
+console.log(storyList.stories);
 
+storyList.stories.append(newStory);
 });

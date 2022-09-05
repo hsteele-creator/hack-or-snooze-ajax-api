@@ -12,7 +12,7 @@ class Story {
    *   - {title, author, url, username, storyId, createdAt}
    */
 
-  constructor( storyId, title, author, url, username, createdAt ) {
+  constructor( {storyId, title, author, url, username, createdAt }) {
     this.storyId = storyId;
     this.title = title;
     this.author = author;
