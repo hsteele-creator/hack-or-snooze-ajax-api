@@ -12,7 +12,7 @@ class Story {
    *   - {title, author, url, username, storyId, createdAt}
    */
 
-  constructor({ storyId, title, author, url, username, createdAt }) {
+  constructor( storyId, title, author, url, username, createdAt ) {
     this.storyId = storyId;
     this.title = title;
     this.author = author;
@@ -73,6 +73,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
+  // MY FAILED ATTEMPT
   // async addStory(user, title, author, url) {
 
   //   const username = user.username;

@@ -35,6 +35,8 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
+
+// shows the creat story form on click of submit
 $("body").on("click", $("#submit"), function(e) {
-  $("#new-story-form").toggleClass("hidden");
+  $("#new-story-form").removeClass("hidden");
 });

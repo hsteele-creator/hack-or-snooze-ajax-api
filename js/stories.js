@@ -50,3 +50,26 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+// use created story data to append a new story to a page
+$("#new-story-form").on("submit", function(e) {
+
+  e.preventDefault;
+
+  const title = $("#title").val();
+  const author = $("#author").val();
+  const url = $("#url").val();
+
+  console.log(title);
+  console.log(author);
+  console.log(url);
+
+  console.log(currentUser);
+
+
+const newStory = storyList.addStory(currentUser, {title, author, url});
+
+storyList.stories.append(newStory);
+
+});
