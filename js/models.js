@@ -73,9 +73,34 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  // async addStory(user, title, author, url) {
+
+  //   const username = user.username;
+  //   const token = user.loginToken
+
+  //   const result = await axios.post("https://hack-or-snooze-v3.herokuapp.com/stories", {token, username, title, author, url, });
+
+  //   return result;
+  // }
+
+  async addStory(user, { title, author, url }) {
+    const token = user.loginToken;
+    const response = await axios({
+      method: "POST",
+      url: `${BASE_URL}/stories`,
+      data: { token, story: { title, author, url } },
+    });
+
+    const story = new Story(response.data.story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
+
+    return story;
   }
+
+
+
+
 }
 
 

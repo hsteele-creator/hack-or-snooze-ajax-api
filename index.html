@@ -32,12 +32,20 @@
 
 <body>
 
+  <form action="" id="new-story-form" class="hidden">
+    <input type="text" id="title" placeholder="title">
+    <input type="text" id="author" placeholder="author">
+    <input type="text" id="url" placeholder="url">
+    <button type="submit" id="submit">Submit</button>
+  </form>
+
 <!-- top navigation bar -->
 <nav>
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   <div class="nav-right">
+    <a class="nav-link" href="#" id="submit">submit</a>
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
