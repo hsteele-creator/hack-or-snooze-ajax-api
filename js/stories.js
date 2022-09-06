@@ -37,6 +37,7 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
+        <button class='remove'> remove </button>
       </li>
     `);
 
@@ -84,7 +85,19 @@ $allStoriesList.prepend($newStory);
 });
 
 
+// add story to favorite on checking of checkbox
+$body.on("click", ".favorite", function(e) {
+  const target = e.target;
 
-const checkboxes = ($("input[type=checkbox]"));
+  const newUser = new User;
 
-console.log($("input[type=checkbox]"));
+  if(target.checked) {
+    newUser.favoritStory(currentuser.loginToken, currentUser.username, target.closest("li").id)
+  }
+})
+
+
+// remove story from DOM and let api know its deleted
+$body.on("click", ".remove", function(e) {
+  e.target.closest("li").remove();
+})
