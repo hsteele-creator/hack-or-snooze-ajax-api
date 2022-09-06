@@ -221,12 +221,7 @@ class User {
   }
 
     // add a favorite 
-
-  
-
     async favoriteStory(token, username, storyID) {
-
-      const favoriteArray = [];
 
       const response = await axios({
         url: `${BASE_URL}/users/${username}/favorites/${storyID}`,
@@ -234,10 +229,23 @@ class User {
         params: { token }
       })
 
-      favoriteArray.push(response);
-
-      return favoriteArray;
+      return response;
     }
+
+
+    // remove favorite
+
+    async removeFavorite(token, username, storyID) {
+
+      const response = await axios({
+        url: `${BASE_URL}/users/${username}/favorites/${storyID}`,
+        method: "DELETE",
+        params: { token }
+      })
+
+      return response;
+    }
+
 
 
 

@@ -86,18 +86,30 @@ $allStoriesList.prepend($newStory);
 
 
 // add story to favorite on checking of checkbox
-$body.on("click", ".favorite", function(e) {
+$body.on("click", ".favorite", async function(e) {
   const target = e.target;
 
   const newUser = new User;
 
   if(target.checked) {
-    newUser.favoritStory(currentuser.loginToken, currentUser.username, target.closest("li").id)
+
+    const favoriteStories = [];
+
+    const favoritedStory = await newUser.favoritStory(currentuser.loginToken, currentUser.username, target.closest("li").id);
+
+    favoriteStories.append(favoritedStory);
   }
+
+  else {
+    const removeFavorite = await newUser.removeFavorite(currentuser.loginToken, currentUser.username, target.closest("li").id);
+  }
+
 })
 
 
 // remove story from DOM and let api know its deleted
-$body.on("click", ".remove", function(e) {
+$body.on("click", ".remove", async function(e) {
   e.target.closest("li").remove();
+
+  await axios.get(`${BASE_URL}/stories/target.closest("li").id`);
 })
