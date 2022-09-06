@@ -23,8 +23,14 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+
   return $(`
+      
+
+
       <li id="${story.storyId}">
+      <input class="favorite" type="checkbox">
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -33,6 +39,8 @@ function generateStoryMarkup(story) {
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
+
+
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
@@ -72,7 +80,11 @@ const newStory = await storyList.addStory(currentUser, {title, author, url});
 
 const $newStory = generateStoryMarkup(newStory);
 
-console.log(storyList.stories);
-
 $allStoriesList.prepend($newStory);
 });
+
+
+
+const checkboxes = ($("input[type=checkbox]"));
+
+console.log($("input[type=checkbox]"));

@@ -219,4 +219,18 @@ class User {
       return null;
     }
   }
+
+    // add a favorite 
+    async favoriteStory(token, username, storyID) {
+      const response = await axios({
+        url: `${BASE_URL}/users/${username}/favorites/${storyID}`,
+        method: "POST",
+        params: { token }
+      })
+
+      return response;
+    }
+
+
+
 }
