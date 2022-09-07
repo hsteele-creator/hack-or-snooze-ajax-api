@@ -101,7 +101,7 @@ $body.on("click", ".favorite", async function(e) {
   }
 
   else {
-    const removeFavorite = await newUser.removeFavorite(currentuser.loginToken, currentUser.username, target.closest("li").id);
+    await newUser.removeFavorite(currentuser.loginToken, currentUser.username, target.closest("li").id);
   }
 
 })
