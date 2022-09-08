@@ -48,10 +48,20 @@ async function favorite(storyID) {
 
   const newUser = new User(currentUser, currentUser.loginToken);
 
+  if(!favorites.includes(storyID)) {
+
     const favorite = (await newUser.favoriteStory(currentUser.loginToken, currentUser.username, storyID));
 
-    favorites.push(favorite);
+    favorites.push(storyID);
     console.log(favorites);
+  } else {
+    for(let i = 0; i < favorites.length; i++) {
+      if(favorites[i] === storyID) {
+        favorites.splice(i, 1);
+      }
+    }
+    console.log(favorites);
+  }
   }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
@@ -72,7 +82,7 @@ function putStoriesOnPage() {
 
 
 // use created story data to append a new story to a page
-$("#new-story-form").on("submit", async function(e) {
+$("#submit-btn").on("click", async function(e) {
 
   e.preventDefault;
 
@@ -104,13 +114,13 @@ $allStoriesList.prepend($newStory);
 // })
 
 async function remove(storyID) {
+  
   console.log("removed");
 
   const newUser = new User(currentUser, currentUser.loginToken);
 
-  // const removedStory = await newUser.removeStory(currentUser.loginToken, storyID);
+  console.log(storyID);
 
-  // console.log(removedStory);
-
-  storyID.closest("li").remove();
+  // await storyID.closest("li").remove();
+  
 }

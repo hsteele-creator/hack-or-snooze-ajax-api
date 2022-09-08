@@ -26,7 +26,6 @@ function navLoginClick(evt) {
 $navLogin.on("click", navLoginClick);
 
 /** When a user first logins in, update the navbar to reflect that. */
-
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
   $(".main-nav-links").show();
@@ -36,10 +35,11 @@ function updateNavOnLogin() {
 }
 
 
-// shows the creat story form on click of submit
-$("body").on("click", $("#submit"), function(e) {
-  $("#new-story-form").removeClass("hidden");
-});
+// shows story form on click of submit in nav bar
+function showStoryForm() {
+  $("#new-story-form").toggleClass("hidden");
+}
+
 
 // shows favorites on favorites on nav click
 // $(".favorites").on("click", function() {
@@ -50,3 +50,4 @@ $("body").on("click", $("#submit"), function(e) {
 //     mark
 //   }
 // })
+
