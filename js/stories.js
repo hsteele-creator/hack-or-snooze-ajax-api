@@ -26,23 +26,33 @@ function generateStoryMarkup(story) {
 
 
   return $(`
-      
-
-
       <li id="${story.storyId}">
-      <input class="favorite" type="checkbox">
+      <button class="favorite" onClick="favorite('${story.storyId}')">⭐</button>   
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
-        <button class='remove'> remove </button>
+        <button class='remove' onClick="remove('${story.storyId}')">🗑️</button>
       </li>
     `);
 
 
 }
+
+
+const favorites = [];
+
+async function favorite(storyID) {
+
+  const newUser = new User(currentUser, currentUser.loginToken);
+
+    const favorite = (await newUser.favoriteStory(currentUser.loginToken, currentUser.username, storyID));
+
+    favorites.push(favorite);
+    console.log(favorites);
+  }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
@@ -85,31 +95,22 @@ $allStoriesList.prepend($newStory);
 });
 
 
-// add story to favorite on checking of checkbox
-$body.on("click", ".favorite", async function(e) {
-  const target = e.target;
-
-  const newUser = new User;
-
-  if(target.checked) {
-
-    const favoriteStories = [];
-
-    const favoritedStory = await newUser.favoritStory(currentuser.loginToken, currentUser.username, target.closest("li").id);
-
-    favoriteStories.append(favoritedStory);
-  }
-
-  else {
-    await newUser.removeFavorite(currentuser.loginToken, currentUser.username, target.closest("li").id);
-  }
-
-})
-
 
 // remove story from DOM and let api know its deleted
-$body.on("click", ".remove", async function(e) {
-  e.target.closest("li").remove();
+// $body.on("click", ".remove", async function(e) {
+//   e.target.closest("li").remove();
 
-  await axios.get(`${BASE_URL}/stories/target.closest("li").id`);
-})
+//   await axios.get(`${BASE_URL}/stories/target.closest("li").id`);
+// })
+
+async function remove(storyID) {
+  console.log("removed");
+
+  const newUser = new User(currentUser, currentUser.loginToken);
+
+  // const removedStory = await newUser.removeStory(currentUser.loginToken, storyID);
+
+  // console.log(removedStory);
+
+  storyID.closest("li").remove();
+}

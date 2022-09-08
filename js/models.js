@@ -232,9 +232,7 @@ class User {
       return response;
     }
 
-
     // remove favorite
-
     async removeFavorite(token, username, storyID) {
 
       const response = await axios({
@@ -242,10 +240,20 @@ class User {
         method: "DELETE",
         params: { token }
       })
-
       return response;
     }
 
+
+    // remove a story 
+    async removeStory(token, storyID) {
+      const response = await axios({
+        url: `${BASE_URL}/stories/${storyID}`,
+        method: "DELETE",
+        params: { token }
+      })
+
+      return response;
+    }
 
 
 

@@ -40,3 +40,13 @@ function updateNavOnLogin() {
 $("body").on("click", $("#submit"), function(e) {
   $("#new-story-form").removeClass("hidden");
 });
+
+// shows favorites on favorites on nav click
+// $(".favorites").on("click", function() {
+//   console.log("favorite");
+//   hidePageComponents();
+
+//   for(let story of favoriteStories) {
+//     mark
+//   }
+// })
