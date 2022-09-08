@@ -60,8 +60,9 @@ async function favorite(storyID) {
         favorites.splice(i, 1);
       }
     }
-    console.log(favorites);
+    console.log(favorites)
   }
+  return favorites;
   }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
