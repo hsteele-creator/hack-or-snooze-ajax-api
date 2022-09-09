@@ -43,6 +43,7 @@ function generateStoryMarkup(story) {
 
 
 const favorites = [];
+const favoriteStoryList = [];
 
 async function favorite(storyID) {
 
@@ -50,23 +51,24 @@ async function favorite(storyID) {
 
   if(!favorites.includes(storyID)) {
 
-    const favorite = (await newUser.favoriteStory(currentUser.loginToken, currentUser.username, storyID));
-
     favorites.push(storyID);
-    console.log(favorites);
   } else {
     for(let i = 0; i < favorites.length; i++) {
       if(favorites[i] === storyID) {
         favorites.splice(i, 1);
       }
     }
-    console.log(favorites)
   }
-  return favorites;
+  for(let favorite of favorites) {
+    const favoritedStory = newUser.getStoryById(favorite);
+
+    favoriteStoryList.append(favoritedStory);
   }
+  console.log(favorites);
+  }
+  
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
-
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 

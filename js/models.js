@@ -100,8 +100,6 @@ class StoryList {
   }
 
 
-
-
 }
 
 
@@ -251,10 +249,16 @@ class User {
         method: "DELETE",
         params: { token }
       })
-
       return response;
     }
 
-
+    // get story by id
+    async getStoryById(storyID) {
+      const response = await axios({
+        url: `${BASE_URL}/stories/${storyID}`,
+        method: "GET",
+      })
+      return response;
+    }
 
 }
